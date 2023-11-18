@@ -1,0 +1,58 @@
+let playerBalance = 100;
+
+function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function runRace() {
+    const horses = ["RedRunner", "BlueBolt", "GreenGalloper", "YellowYonder"];
+    const results = horses.map(horse => ({ name: horse, speed: getRandomNumber(1, 100) }));
+    const winner = results.reduce((max, horse) => (horse.speed > max.speed ? horse : max), results[0]);
+    return winner;
+}
+
+function startRace(winner) {
+    const horses = ["RedRunner", "BlueBolt", "GreenGalloper", "YellowYonder"];
+    horses.forEach(horse => {
+        const horseElement = document.getElementById(horse);
+        const isWinner = horse === winner.name;
+        const duration = isWinner ? 14 : 15 + Math.random();
+        horseElement.style.animation = `runRace ${duration}s linear`;
+    });
+}
+
+function placeBet() {
+    const betAmount = parseInt(document.getElementById('betAmount').value);
+    const selectedHorse = document.getElementById('horseSelect').value;
+
+    if (betAmount > playerBalance) {
+        alert("You don't have enough balance!");
+        return;
+    }
+
+    playerBalance -= betAmount;
+    const winner = runRace();
+    startRace(winner);
+
+    setTimeout(() => {
+        finishRace(winner, selectedHorse, betAmount);
+    }, 15000);
+}
+
+function finishRace(winner, selectedHorse, betAmount) {
+    let resultMessage;
+    if (winner.name === selectedHorse) {
+        playerBalance += betAmount * 2;
+        resultMessage = `Congratulations! ${winner.name} won the race! Your new balance is ${playerBalance}.`;
+    } else {
+        resultMessage = `Sorry, ${winner.name} won the race. Your balance is now ${playerBalance}.`;
+    }
+
+    document.getElementById('result').innerText = resultMessage;
+
+    const horses = ["RedRunner", "BlueBolt", "GreenGalloper", "YellowYonder"];
+    horses.forEach(horse => {
+        const horseElement = document.getElementById(horse);
+        horseElement.style.animation = '';
+    });
+}
