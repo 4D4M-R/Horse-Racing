@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Racehorse Betting Game</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Racehorse Betting Game</h1>
+    <div id="raceTrack">
+        <div id="RedRunner" class="horse">🐎</div>
+        <div id="BlueBolt" class="horse">🐎</div>
+        <div id="GreenGalloper" class="horse">🐎</div>
+        <div id="YellowYonder" class="horse">🐎</div>
+    </div>
+    <div id="bettingArea">
+        <input type="number" id="betAmount" placeholder="Bet Amount">
+        <select id="horseSelect">
+            <option value="RedRunner">Red Runner</option>
+            <option value="BlueBolt">Blue Bolt</option>
+            <option value="GreenGalloper">Green Galloper</option>
+            <option value="YellowYonder">Yellow Yonder</option>
+        </select>
+        <button onclick="placeBet()">Place Bet</button>
+    </div>
+    <div id="result"></div>
+    <script src="script.js"></script>
+</body>
+</html>
