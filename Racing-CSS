@@ -1,0 +1,24 @@
+#raceTrack {
+    position: relative;
+    width: 100%;
+    height: 800px; /* Increased height to accommodate larger horse emojis */
+    background-color: #004d00; /* Darker green for grass */
+    border: 1px solid #000;
+    margin-bottom: 20px;
+}
+
+.horse {
+    position: absolute;
+    font-size: 80px; /* Increased size of the horse emoji */
+    transform: scaleX(-1); /* Flip the emoji to face the right direction */
+}
+
+#RedRunner { top: 50px; }    /* Adjusted positions for larger emojis */
+#BlueBolt { top: 250px; }
+#GreenGalloper { top: 450px; }
+#YellowYonder { top: 650px; }
+
+@keyframes runRace {
+    0% { left: 0; }
+    100% { left: calc(100% - 80px); } /* Adjust for the new size of the emoji */
+}
